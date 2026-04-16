@@ -1,3 +1,4 @@
 1. https://github.com/donnemartin/system-design-primer?tab=readme-ov-file#study-guide
 2. https://github.com/ByteByteGoHq/system-design-101
 3. https://algomaster.io/learn/system-design/latency-vs-throughput
+4. https://www.geeksforgeeks.org/system-design/system-design-tutorial/
