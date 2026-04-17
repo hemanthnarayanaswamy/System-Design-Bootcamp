@@ -8,7 +8,7 @@ Performance vs Scalability in System design explores how systems balance speed(`
 
 ---
 
-## Performance
+## 1. Performance
 Performance in system design refers to how well a system executes tasks or processes within a given timeframe. It encompasses factors like `speed`, `responsiveness`, `throughput`, and `resource utilization`.  
 * For instance, a high-perfromance system might process a large amount of data quickly, respond to user inputs rapidly, and efficiently utilize system resources such as `CPU, memory and network bandwidth`
 * Performance optimization involves techniques such as `code optimization`, `caching`, `load balancing` and `hardware upgrades` to ensure that a system meets its performance requirements and delivers a smooth user experience.
@@ -45,7 +45,7 @@ Techniques like `connection pooling` in database connections or `object pooling`
 
 ---
 
-## Scalability
+## 2. Scalability
 `Scalability` in system design refers to a system's ability to handle increasing amounts of work or users without compromising performance. It involves designing a system so that it can easily accommodate growth in terms of data volume, user traffic, or processing demands without significant changes to its architecture.
 * `Horizontal Scaling` & `Vertical Scaling`
 * Scalable systems can seamlessly expand by adding more resources or components, such as servers or databases, to distribute the workload efficiently.
@@ -72,10 +72,24 @@ To make services stateless:
 * Use tokens `(JWT)` instead of server-side sessions
 * Store uploaded files in object storage (S3) instead of local disk
 
+```ini
+The Producer-Consumer pattern is a fundmental design pattern used in system design to manage the flow of data between independent components. 
+
+Producers: Entities that data or tasks, placing them into a shared buffer or queue. 
+Consumers: Entities that process the data or tasks, retrieving them from the shared buffer or queue. 
+Queue:     A shared buffer or queue that holds the items produced until they are consumed by consumers
+```
+
 ### Scaling Different Components
 * A typical system is not monolithic. 
 * It has multiple components, each with different scaling characteristics and challenges. 
 * Understanding these differences is crucial because the scaling strategy that works for one tier often does not work for another.
+
+1. Application servers are usually the easiest to scale horizontally, provided they are stateless:
+2. Databases are typically the hardest to scale because they manage state. Unlike application servers, you cannot simply spin up more database instances and put a load balancer in front of them. `Data Consistency`, `durability` and `transaction isolation` all complicate matters. 
+3. Caching reduces load on databases and improves respone times. A well-designed cache can handle 100x the throughput of a databas, makeing it essential for high-traffic systems.
+4. Message queues are essential for scaling asynchronous workloads. They decouple producers from consumers, allowing each to scale independently, and they buffer traffic spikes so consumers can process at their own pace. 
+
 ---
 
 # Performance Vs Scalability
@@ -110,3 +124,51 @@ Choosing between performance and scalability in system design depends on various
 * Recognize that there may be trade-offs between `performance` and `scalability`.
 * For example, optimizing for performance may involve `trade-offs` in terms of `scalability`, and vice versa.
 **Strive to strike** the right balance based on the `specific requirements` and `constraints of the project`.
+
+---
+
+## Example: Scaling from 0 to million usersf
+
+### Stage 1: Single Server (0-10K Users)
+![s2](../assets/s2.png)
+
+* Everything runs on one machine. The application and database share the same server. 
+* Simple, cheap and perfect for few thousand users. There is no distribueted system complixity, no network latency. 
+* The bottleneck emerges when the application and database start competing for CPU and MEMORY on the same machine. 
+
+### Stage 2: Separate Database (10K - 100K Users)
+![s3](../assets/s3.png)
+
+* The first scaling move is usually separating the database onto its own machine. Now each component can be tuned independently. 
+* You can give the database server more RAM for caching, while the app server gets more CPU for request processing. 
+* The bootleneck shifts to the database. As user counts grow, the datbase handles more queries, and read operations start slowing down. 
+
+### Stage 3: Add Caching (100K - 500K Users)
+![s4](../assets/s4.png)
+
+* Adding a cache layer dramatically reduces database load. `Hot data`, things like user profies, recent posts, and session data, gets served from memory. 
+* Redis can handle hundreds of thousands of reads per second, far more than MySQL. 
+* **With Good Caching Strategy, 80-90% of reads never hit the database**
+* The bottleneck is not the single app server. It cannot handle the incoming request volume. 
+
+### Stage 4: Multiple App Servers (500K - 2M users)
+![s5](../assets/s5.png)
+
+* This is where horizontal scaling begins. A load balancer distributes traffic across multiple app servers. Each server is stateless, storing no session data locally. 
+* The Redis cache servers as the shared session store. 
+* Adding more app servers is now trivial. Need more capacity? Spin up another server. Traffic spike during peak hours? Auto-scaling adds servers automatically.
+* The bottleneck shifts back to the database. With more app servers generating more queries, the single MySQL instance becomes overwhelmed. 
+
+### Stage 5: Read Replicas (2M - 10M users)
+![s5](../assets/s6.png)
+
+* Most Applications are read-heavy, with reads outnumbering writes by 10:1 or more. 
+* `Read Replcias` take advantage of this pattern. The primary database handles all writes, while replcias serve read queries. This multiplies read capacity without changing the application much. 
+* The trade-off is `replciation lag`. Replicas may be a few milliseconds behind the primary, so recently written data might not be immediately visible on reads. 
+* The bottleneck becomes write throughput. One primary database can only handle so many writes per second. 
+
+### Stage 6: Sharding (10M+ users)
+![s7](../assets/s7.png)
+
+* Sharding is the final frontier of relational database scaling. Data is partitioned across multiple databases based on a shard key, typically user ID. Each shard handles a subset of users, distributing both read and write load.
+* This is powerful but comes with significant complexity. Cross-shard queries become expensive or impossible. Rebalancing shards when they grow unevenly is operationally challenging.
