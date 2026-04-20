@@ -180,3 +180,6 @@ Data replicaiton invovles copying data drom one location to anothe rto ensure th
 Distributing services and data across multiple geographic locations mitigates the risk of regional failures. 
 * **content delivery networks CDN** to distribute content globally, improving availability and reducing latency. 
 * **Multi-Region Cloud Deployments** to ensure that an outage in one region does not disrupt your entire application.
+
+---
+# <center> Maintainability </center>

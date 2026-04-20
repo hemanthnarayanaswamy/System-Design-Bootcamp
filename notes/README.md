@@ -5,6 +5,7 @@
 3. [Performance vs Scalability](./Core%20Concepts/Performance-Scalability.md)
 4. [Latency vs Throughtput vs Bandwidth](./Core%20Concepts/Latency-Throughtput-Bandwidth.md)
 5. [Availability - High Availability Patterns](./Core%20Concepts/Availability-High%20Availability%20Pattern.md)
-6. [Reliability - Single Point of Failure](./Core%20Concepts/Reliability-SPOF.md)
-7. [Consistency - Consistency Pattersns]
-8. [CAP Theorem]
+6. [Reliability - Single Point of Failure - Maintainability](./Core%20Concepts/Reliability-SPOF-Maintainability.md)
+7. [CAP Theorem](./Core%20Concepts/CAP%20Theorem.md)
+8. [Consistency Models]
+9. 
