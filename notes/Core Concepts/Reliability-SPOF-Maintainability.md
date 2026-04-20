@@ -183,3 +183,31 @@ Distributing services and data across multiple geographic locations mitigates th
 
 ---
 # <center> Maintainability </center>
+Maintainability refers to how easily a software system can be modified, updated, or improved over time. It ensures developers can fix issues, add features, and enhance components with minimal disruption to the system.
+
+* The system is tructured into smaller modules so individual parts can be changed without affecting the entire application. 
+**Clear, readable code along with version control and automated testing helps track changes and quickly detect issues.**
+
+## Measuring Maintainability
+While measuring maintainability is subjective, here are some metrics to measure it:
+
+#### 1. Maintainability Index
+It gives a score to measure how maintainable a code module or system is. It considers factors like complexity and duplication, and may vary by `IDE`. A higher score means better maintainability and easier code improvements.
+
+#### 2. Code Churn
+It tracks how often a code module is modified over time using version control data. High churn can indicate instability, while monitoring it helps identify areas needing extra testing and attention.
+
+#### 3. Cyclomatic Complexity
+It measures the complexity of a code module. Higher complexity is an indication that the code is more complicated to understand and there may be potential easier ways available to break the complexity of a particular code module.
+
+#### 4. Time and Resource constraints
+It's important to balance between speed of development as well as speed of maintainability. A rush by the development team to complete a tight deadline without considering maintainability can lead to complicated future maintenance efforts.
+
+#### 5. Documentation
+Good documentation reduces the learning curve for new Devs and helps the existing team understand it better during maintenance. 
+
+#### 6. Test Coverage
+It measures the extent to which automated tests cover the codebase, It helps prevent [Regressions](regression refers to a defect where a previously working feature stops functioning correctly after changes are made to the codebase.) from being introduced. Test coverage tools assess the extent of code exercised by automated tests, expressed as a percentage. `Sonar`
+
+#### 7. Code Duplication
+It measures how much repeated code exists in a system. High duplication increases maintenance effort because changes must be updated in multiple places. It is detected using `static analysis` tools that find similar code segments.

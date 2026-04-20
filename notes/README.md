@@ -7,5 +7,5 @@
 5. [Availability - High Availability Patterns](./Core%20Concepts/Availability-High%20Availability%20Pattern.md)
 6. [Reliability - Single Point of Failure - Maintainability](./Core%20Concepts/Reliability-SPOF-Maintainability.md)
 7. [CAP Theorem](./Core%20Concepts/CAP%20Theorem.md)
-8. [Consistency Models]
+8. [Consistency Models](./Core%20Concepts/Consistency%20Models.md)
 9. 
