@@ -1,4 +1,5 @@
-# <center>System Design 101</center>
+# <center> System Design 101 </center>
+
 1. [Introduction](./Intro/Intro.md)
 2. [Functional & Non Functional Requirements](./Intro/Requirements.md)
 3. [Performance vs Scalability](./Core%20Concepts/Performance-Scalability.md)
