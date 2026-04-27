@@ -8,4 +8,5 @@
 6. [Reliability - Single Point of Failure - Maintainability](./Core%20Concepts/Reliability-SPOF-Maintainability.md)
 7. [CAP Theorem](./Core%20Concepts/CAP%20Theorem.md)
 8. [Consistency Models](./Core%20Concepts/Consistency%20Models.md)
-9. 
+9. [Background Jobs](./Networking/backgroundJobs.md)
+10. [Domain Name System](./Networking/dns.md)
