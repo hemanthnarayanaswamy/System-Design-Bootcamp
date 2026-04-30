@@ -35,7 +35,7 @@ When components are in series, meaning all must work for the system to function,
 Each component in the chain reduces overall availability. You started with three components, each at "three nines," but the combined system is below three nines. Add more components in series, and availability keeps dropping. 
 
 #### 2. Components in Parallel
-When componnents are in parallel, meaning any can handle the request, availability improvesdramatically:
+When componnents are in parallel, meaning any can handle the request, availability improves dramatically:
 ![a1](../assets/a2.png)
 
 <code>
@@ -161,6 +161,7 @@ The question is whether that cost is justified by the reduction in down-time ris
 
 ## Pattern 1: Load Balancer with Multiple Backends
 The most common and fundamental pattern for stateless services. A load balancer distributes traffic across multiple servers, automatically routing around failures.
+
 ![a6](../assets/a6.png)
 
 * Load balancer continuously monitors backend health
@@ -168,7 +169,7 @@ The most common and fundamental pattern for stateless services. A load balancer 
 * Traffic redistributes to healthy servers within seconds
 * New servers can be added without any downtime
 
-**Load Balancer itself is a `SINGLE POINT OF FAILURE`. Fore true high availability, you need redundant load balancers: 
+**Load Balancer itself is a `SINGLE POINT OF FAILURE`. Fore true high availability, you need redundant load balancers:**
 ![a7](../assets/a7.png)
 
 ## Pattern 2: Database Replication with Automatic Failover
@@ -185,7 +186,7 @@ Replication is an availability pattern that involves having multiple copies of t
 
 **Most production systems use synchronous replication for the failover target and asynchronous replication for read replicas and analytics.**
 
-#### Master-Master & Master_Slave Replication
+#### Master-Master & Master-Slave Replication
 1. **Master-Master replication**: In this type of replication, multiple servers are configured as "masters," and each one can accept read and write operations. This allows for high availability and allows any of the servers to take over if one of them fails. However, this type of replication can lead to conflicts if multiple servers update the same data at the same time, so some conflict resolution mechanism is needed to handle this.
 ![mm](https://media.geeksforgeeks.org/wp-content/uploads/20240224111956/Master-Master-Replication.webp)
 
