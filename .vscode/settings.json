@@ -1,6 +1,8 @@
 {
   "workbench.editorAssociations": {
-    "*.md": "vscode.markdown.preview.editor"
+    "*.md": "default",
+    "*.copilotmd": "vscode.markdown.preview.editor",
+    "*.VSIXPackage": "default"
   },
   "markdown.preview.openMarkdownLinks": "inPreview",
   "markdown.preview.scrollPreviewWithEditor": true,
