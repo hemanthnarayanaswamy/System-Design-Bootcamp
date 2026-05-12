@@ -2,3 +2,4 @@
 2. https://github.com/ByteByteGoHq/system-design-101
 3. https://algomaster.io/learn/system-design/
 4. https://www.geeksforgeeks.org/system-design/system-design-tutorial/
+5. https://github.com/karanpratapsingh/system-design
