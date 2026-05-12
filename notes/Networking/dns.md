@@ -36,6 +36,8 @@ Different DNS record types are used to store specific information about a domain
 3. `MX Record`: Specifies the mail server responsible for receiving emails for a domain.
 4. `TXT Record`: Stores text information used for verification and email authentication purposes.
 
+![records](https://assets.bytebytego.com/diagrams/0175-dns-record-types-you-should-know.png)
+
 We have more Record but this are the important onces.
 ---
 
